@@ -1,1 +1,192 @@
-<h1>Hello!</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Better To-Do</title>
+
+<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type='text/javascript' src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+<script type="text/javascript">
+
+
+$(window).load(function(){
+
+// Your Javascript code here
+$(document).ready(function() {
+  $('.inst').click(function() {
+    $('.instpanel').slideToggle('fast');
+  });
+
+  $('#button').click(function() {
+    var toAdd = $('input[name=ListItem]').val();
+    $('#article').append('<li class = "Items">' + toAdd + '</li>');
+    $("#clearmytext").val(' ');
+  });
+
+  $(document).on('click', '.Items', function() {
+    $(this).css("text-decoration", "line-through");
+    $(this).click(function() {
+      if ($(this).css("text-decoration", "line-through")) {
+        $(this).remove();
+      } else {
+        $(this).css("text-decoration", "line-through");
+      }
+    });
+  });
+
+  $(document).keypress(function(event) {
+    var keypress = (event.keypress ? event.keypress : event.which);
+    if (keypress == '13') {
+      event.preventDefault();
+      $('#button').click();
+    }
+  });
+  
+  
+    $('ul').sortable();
+    $('ul').disableSelection();
+});
+
+}); // Closes window.load
+
+</script>
+<style>
+/*TO DO LIST:
+x Enter Key Works to Add Item
+x Sortable List
+Timer
+Save Between Sessions
+x Slide down how-to menu
+Priorities
+*/
+body {
+  background-color: #C3DBBD;
+  font-family: Courier;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+h2 {
+  margin-top: 40px
+}
+
+form {
+  display: inline-block
+}
+
+#wrap {
+  width: 300px;
+  text-align: center;
+  margin: auto;
+}
+
+#button {
+  display: inline-block;
+  height: 15px;
+  width: 130px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+#article {
+  list-style-type: none;
+  float: left;
+  text-align: left;
+  margin-left: -40px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+#highpri {
+  height: 100px;
+  width: 100px;
+  background-color: #BD4D4D;
+  border-radius: 10px;
+  bottom: 0;
+  margin: 5px;
+  display: none;
+  left: 0;
+}
+
+#midpri {
+  height: 100px;
+  width: 100px;
+  background-color: #EDB277;
+  border-radius: 10px;
+  display: none;
+  bottom: 0;
+  margin: 5px;
+}
+
+#lowpri {
+  height: 100px;
+  width: 100px;
+  background-color: #707D6D;
+  border-radius: 10px;
+  display: none;
+  bottom: 0;
+  margin: 5px;
+}
+
+.inst {
+  font-size: 7pt;
+  float: right;
+  margin-right: 15px;
+}
+
+.instpanel {
+  background-color: #E5EDCE;
+  height: 140px;
+  margin-top: 0px;
+  margin-left: -10px;
+  margin-right: -10px;
+  float: top;
+  display: none;
+}
+
+#instructions {
+  text-align: left;
+  font-size: 8pt;
+  margin-left: 50px;
+  margin-top: 0px;
+  padding-top: 25px;
+}
+
+</style>
+</head>
+<body>
+
+<title>A (Slightly) Better Todo List</title>
+
+<body>
+  <div class="instpanel">
+    <p id="instructions"><strong>Instructions</strong>
+
+      <br />To add an item to the list, type it into the field and click 'add to list' or hit your enter key.
+      <br />To cross an item off, click it once.
+      <br />To delete it, click it again.
+      <br />
+      <br />To close this panel, click 'Instructions' again.</p>
+    <br />
+  </div>
+  <p class="inst">Instructions</p>
+  <br />
+  <br />
+  <h2>A (slightly) Better Todo List</h2>
+
+  <div id="wrap">
+    <form name="ListForm">X
+      <input type="text" id="clearmytext" name="ListItem" />
+    </form>
+    <div id="button">add to list</div>
+    <br />
+    <ol id="article"></ol>
+  </div>
+</body>
+
+</body>
+</html> 
